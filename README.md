@@ -27,3 +27,17 @@ jobs:
 ```
 
 Note that the `GITHUB_TOKEN` secret is automatically available, so you don't need to do anything else about that.
+
+By default, it will run `yarn test-coverage`. 
+Either you add something like this: `"test-coverage": "COVERAGE=true ember test"` to your package.json file, 
+or you can specify a custom test command:
+
+```yaml
+- uses: mydea/ember-cli-code-coveage-action@v1
+  with:
+    repo-token: "${{ secrets.GITHUB_TOKEN }}"
+    test-command: "yarn my-test-command"
+```
+
+You can also specify a custom `coverage-file` (defaults to `./coverage/coverage-summary.json`), 
+and a `coverage-indicator`, which defaults to `statement` (which defines which type of coverage will be used).

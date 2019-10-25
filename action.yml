@@ -9,7 +9,7 @@ inputs:
     description: 'The GITHUB_TOKEN secret'
   test-command:
     description: 'The command to run your tests'
-    default: 'COVERAGE=true yarn test'
+    default: 'yarn test-coverage'
   coverage-file:
     description: 'The location of coverage summary.json file'
     default: './coverage/coverage-summary.json'
