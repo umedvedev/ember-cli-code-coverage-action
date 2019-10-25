@@ -21,7 +21,7 @@ jobs:
     - uses: mydea/actions-ember-testing@v1
     - name: Install dependencies
       run: yarn install
-    - uses: mydea/ember-cli-code-coveage-action@v1
+    - uses: mydea/ember-cli-code-coverage-action@v1
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
 ```
@@ -33,7 +33,7 @@ Either you add something like this: `"test-coverage": "COVERAGE=true ember test"
 or you can specify a custom test command:
 
 ```yaml
-- uses: mydea/ember-cli-code-coveage-action@v1
+- uses: mydea/ember-cli-code-coverage-action@v1
   with:
     repo-token: "${{ secrets.GITHUB_TOKEN }}"
     test-command: "yarn my-test-command"
