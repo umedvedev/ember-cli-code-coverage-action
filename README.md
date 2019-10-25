@@ -18,6 +18,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
+    - uses: mydea/actions-ember-testing@v1
+    - name: Install dependencies
+      run: yarn install
     - uses: mydea/ember-cli-code-coveage-action@v1
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
