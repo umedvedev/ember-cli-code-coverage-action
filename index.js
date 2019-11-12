@@ -13,11 +13,13 @@ async function run() {
     let testCommand = getInput('test-command', { required: true });
     let coverageFilePath = getInput('coverage-file', { required: true });
     let coverageIndicator = getInput('coverage-indicator', { required: true });
+    let workingDirectory = getInput('working-directory', { required: true });
+    
 
     octokit = new GitHub(myToken);
     let pullRequest = await getPullRequest();
 
-    let testCoverage = await getTestCoverage({ testCommand, coverageFilePath, coverageIndicator });
+    let testCoverage = await getTestCoverage({ testCommand, coverageFilePath, coverageIndicator, workingDirectory });
 
     console.log(`
     
@@ -30,7 +32,7 @@ New test coverage: ${testCoverage}%
     // This could fail, e.g. if no test coverage existed before
     let testCoverageBefore;
     try {
-      testCoverageBefore = await getTestCoverage({testCommand, coverageFilePath, coverageIndicator});
+      testCoverageBefore = await getTestCoverage({testCommand, coverageFilePath, coverageIndicator, workingDirectory});
     } catch (error) {
       testCoverageBefore = 0;
     }
@@ -64,8 +66,8 @@ ${body}`);
   }
 }
 
-async function getTestCoverage({ testCommand, coverageFilePath, coverageIndicator }) {
-  await exec(testCommand);
+async function getTestCoverage({ testCommand, coverageFilePath, coverageIndicator, workingDirectory }) {
+  await exec(testCommand,[],{cwd:workingDirectory});
 
   let coverageFile = fs.readFileSync(coverageFilePath, 'utf-8');
   let coverageSummary = JSON.parse(coverageFile);
