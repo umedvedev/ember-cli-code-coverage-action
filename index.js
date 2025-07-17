@@ -28,6 +28,7 @@ New test coverage: ${testCoverage}%
     
     `);
 
+    await exec(`git fetch origin ${pullRequest.base.ref} && git checkout origin/${pullRequest.base.ref}`);
 
     // This could fail, e.g. if no test coverage existed before
     let testCoverageBefore;
