@@ -23,5 +23,5 @@ inputs:
     description: 'Comment message title that will be posted on PR'
     default: 'Test coverage: **{testCoverage}%**'
 runs:
-  using: 'node20'
+  using: 'node16'
   main: 'index.js'

@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mydea/ember-cli-code-coverage-action.git"
+    "url": "git+https://github.com/umedvedev/ember-cli-code-coverage-action.git"
   },
   "keywords": [
     "actions",
@@ -19,8 +19,8 @@
   "author": "Francesco Novy",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.0.0",
-    "@actions/exec": "^1.0.0",
-    "@actions/github": "^1.0.0"
+    "@actions/core": "^1.4.0",
+    "@actions/exec": "^1.1.0",
+    "@actions/github": "^5.0.0"
   }
 }
