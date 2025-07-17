@@ -17,7 +17,7 @@ async function run() {
     let messageFormat = getInput('message', { required: true });
     
 
-    octokit = github.getOctokit(myToken);
+    octokit = getOctokit(myToken);
     let pullRequest = await getPullRequest();
 
     let testCoverage = await getTestCoverage({ testCommand, coverageFilePath, coverageIndicator, workingDirectory });
