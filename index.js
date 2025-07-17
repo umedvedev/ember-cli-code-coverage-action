@@ -1,6 +1,6 @@
 const { getInput, setFailed } = require('@actions/core');
 const { exec } =  require('@actions/exec');
-const { GitHub, context} = require('@actions/github');
+const { getOctokit, context }= require('@actions/github');
 const fs = require('fs');
 const { buildOutput } = require('./lib/build-output');
 
@@ -17,7 +17,7 @@ async function run() {
     let messageFormat = getInput('message', { required: true });
     
 
-    octokit = new GitHub(myToken);
+    octokit = github.getOctokit(myToken);
     let pullRequest = await getPullRequest();
 
     let testCoverage = await getTestCoverage({ testCommand, coverageFilePath, coverageIndicator, workingDirectory });
@@ -47,7 +47,7 @@ Previous test coverage: ${testCoverageBefore}%
     let body = buildOutput(messageFormat,{ testCoverage, testCoverageBefore });
 
     try {
-      await octokit.issues.createComment({
+      await octokit.rest.issues.createComment({
         owner: context.repo.owner,
         repo: context.repo.repo,
         issue_number: pullRequest.number,
@@ -84,7 +84,7 @@ async function getPullRequest() {
     return;
   }
 
-  const { data: pullRequest } = await octokit.pulls.get({
+  const { data: pullRequest } = await octokit.rest.pulls.get({
     owner: pr.base.repo.owner.login,
     repo: pr.base.repo.name,
     pull_number: pr.number
