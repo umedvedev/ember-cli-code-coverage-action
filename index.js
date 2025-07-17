@@ -28,7 +28,6 @@ New test coverage: ${testCoverage}%
     
     `);
 
-    await exec(`git checkout ${pullRequest.base.sha}`);
 
     // This could fail, e.g. if no test coverage existed before
     let testCoverageBefore;
